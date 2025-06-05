@@ -1,13 +1,17 @@
-import logo from "./logo.svg";
+import React from "react";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="bg-gray-200 text-white">Hello</h1>
-      </header>
+    <div>
+      {/* <Navbar />
+      <Banner />
+      <LogosSection /> */}
+      <Hero />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
