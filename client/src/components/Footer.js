@@ -4,46 +4,54 @@ import footerLeftImage from "../assets/images/footer/image2.png";
 
 const Footer = () => {
   return (
-    <footer className="max-w-screen-xl mx-auto px-4">
-      {/* Top: Background Image Section */}
-      <div className="relative h-[400px]  mx-auto flex items-center justify-center">
-        {/* Left Image */}
-        <img
-          src={footerRightImage}
-          alt="Footer Left"
-          className="absolute left-0 top-0 h-full object-cover z-0"
-        />
+    <footer className="w-full">
+      {/* Top: Image & CTA Section */}
+      <div className="relative py-12 px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-screen-xl mx-auto">
+          {/* Left Image */}
+          <img
+            src={footerRightImage}
+            alt="Footer Left"
+            className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[320px] object-cover rounded"
+          />
 
-        {/* Right Image */}
-        <img
-          src={footerLeftImage}
-          alt="Footer Right"
-          className="absolute right-0 top-0 h-full object-cover z-0"
-        />
+          {/* Center Text Box */}
+          <div className="text-center px-6 py-8 bg-white rounded shadow-2xl w-full max-w-[400px] flex-shrink-0">
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold font-poppins mb-4"
+              style={{
+                WebkitTextStroke: "1px #1f2937",
+                color: "transparent",
+              }}
+            >
+              Stay in the loop
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base font-poppins px-2 md:px-6">
+              Subscribe to get updates on new arrivals and exclusive offers.
+            </p>
 
-        {/* Center Content */}
-        <div className="relative z-10 text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 font-poppins">
-            Stay in the loop
-          </h2>
-          <p className="text-gray-600 mt-2 font-poppins">
-            Subscribe to get updates on new arrivals and exclusive offers.
-          </p>
-          <button className="mt-6 px-6 py-2 bg-black text-white rounded hover:bg-white hover:text-black border hover:border-black transition font-poppins">
-            Subscribe Now
-          </button>
+            <button className="relative overflow-hidden mt-6 px-6 py-2 bg-black text-white rounded font-poppins border border-black transition-all duration-500 group hover:text-black">
+              <span className="relative z-10">Subscribe Now</span>
+              <span className="absolute inset-0 bg-white group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
+              <span className="absolute inset-0 group-hover:border-black border-2 border-transparent rounded transition-all duration-500"></span>
+            </button>
+          </div>
+
+          {/* Right Image */}
+          <img
+            src={footerLeftImage}
+            alt="Footer Right"
+            className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[320px] object-cover rounded"
+          />
         </div>
       </div>
 
-      {/* Bottom: Footer Nav Style Section */}
-      <div className="py-10 bg-white">
-        <div className="max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
+      {/* Bottom Links */}
+      <div className="py-10 bg-white px-4">
+        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <h1 className="text-4xl font-bold font-poppins text-gray-900">
             Fasco
           </h1>
-
-          {/* Links */}
           <ul className="flex flex-wrap justify-center gap-6 text-gray-700 text-base font-poppins">
             <li className="cursor-pointer hover:text-black">Support</li>
             <li className="cursor-pointer hover:text-black">Center</li>
