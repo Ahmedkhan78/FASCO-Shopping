@@ -16,7 +16,7 @@ const Footer = () => {
           />
 
           {/* Center Text Box */}
-          <div className="text-center px-6 py-8 bg-white rounded-2xl shadow-2xl w-full max-w-[400px] flex-shrink-0">
+          <div className="text-center px-6 py-8 bg-white rounded-git add2xl shadow-2xl w-full max-w-[400px] flex-shrink-0">
             <h2
               className="text-3xl sm:text-4xl md:text-5xl font-bold font-poppins mb-4"
               style={{

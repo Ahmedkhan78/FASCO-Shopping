@@ -15,8 +15,31 @@
   animation-play-state: paused;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
 @media (min-width: 768px) {
   .clip-left-slant {
     clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
+}
+
+.navbar:hover {
+  color: black;
+  font-style: bold;
+  font-size: large;
+}
+
+.navbar {
+  transition: linear 0.5s;
 }

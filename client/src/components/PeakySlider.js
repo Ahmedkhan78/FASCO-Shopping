@@ -77,8 +77,11 @@ const PeakySlider = () => {
               $100.00
             </span>
 
-            <button className="px-6 py-2 bg-black text-white rounded hover:bg-white hover:text-black border border-black transition-all duration-300">
-              Buy Now
+            <button className="relative overflow-hidden w-1/2 px-4 py-2  bg-gray-800 text-white rounded text-sm group">
+              <span className="relative z-10 transition-all duration-300 group-hover:text-black ">
+                Buy Now
+              </span>
+              <span className="absolute left-0 top-0 h-full group-hover:border-black border-2 rounded bg-white w-0 group-hover:w-full transition-all duration-500 ease-in-out "></span>
             </button>
           </div>
         </div>
