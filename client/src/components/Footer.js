@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full">
       {/* Top: Image & CTA Section */}
-      <div className="relative py-12 px-4">
+      <div className="relative py-6 px-4">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-screen-xl mx-auto">
           {/* Left Image */}
           <img
@@ -16,7 +16,7 @@ const Footer = () => {
           />
 
           {/* Center Text Box */}
-          <div className="text-center px-6 py-8 bg-white rounded shadow-2xl w-full max-w-[400px] flex-shrink-0">
+          <div className="text-center px-6 py-8 bg-white rounded-2xl shadow-2xl w-full max-w-[400px] flex-shrink-0">
             <h2
               className="text-3xl sm:text-4xl md:text-5xl font-bold font-poppins mb-4"
               style={{
@@ -24,7 +24,7 @@ const Footer = () => {
                 color: "transparent",
               }}
             >
-              Stay in the loop
+              Subscribe To Our Newsletter
             </h2>
             <p className="text-gray-600 text-sm md:text-base font-poppins px-2 md:px-6">
               Subscribe to get updates on new arrivals and exclusive offers.
@@ -41,7 +41,7 @@ const Footer = () => {
           <img
             src={footerLeftImage}
             alt="Footer Right"
-            className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[320px] object-cover rounded"
+            className="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[300px] object-cover rounded"
           />
         </div>
       </div>

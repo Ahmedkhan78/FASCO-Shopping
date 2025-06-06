@@ -4,7 +4,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white font-poppins py-8">
+    <nav className="bg-white font-poppins ">
       <div className="flex items-center justify-between px-4 py-4">
         {/* Left: Logo */}
         <div className="text-[52px] font-bold font-volkhov text-gray-900">

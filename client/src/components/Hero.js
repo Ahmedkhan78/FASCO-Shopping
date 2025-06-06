@@ -74,7 +74,7 @@ const Banner = () => {
           <img
             src={heroImage2}
             alt="Hero Right"
-            className="w-full max-w-[392px] h-auto object-cover"
+            className="w-full max-w-[320px] h-auto object-cover mt-10"
           />
         </div>
       </div>
@@ -83,26 +83,20 @@ const Banner = () => {
 };
 
 const LogosSection = () => {
+  const logos = [Channel, lovisVuitton, Prada, CalvinKlein, Denim];
+
   return (
-    <section className="bg-white py-12">
-      <div className="max-w-screen-xl mx-auto px-4">
-        {/* Logos Container */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-          <div className="flex items-center justify-center">
-            <img src={Channel} alt="Logo 1" className="h-8" />
-          </div>
-          <div className="flex items-center justify-center">
-            <img src={lovisVuitton} alt="Logo 2" className="h-8" />
-          </div>
-          <div className="flex items-center justify-center">
-            <img src={Prada} alt="Logo 3" className="h-8" />
-          </div>
-          <div className="flex items-center justify-center">
-            <img src={CalvinKlein} alt="Logo 4" className="h-8" />
-          </div>
-          <div className="flex items-center justify-center">
-            <img src={Denim} alt="Logo 5" className="h-8" />
-          </div>
+    <section className="bg-white py-12 overflow-hidden">
+      <div className="w-full">
+        <div className="flex gap-12 animate-marquee whitespace-nowrap">
+          {logos.concat(logos).map((logo, index) => (
+            <img
+              key={index}
+              src={logo}
+              alt={`Logo ${index}`}
+              className="h-8 w-auto inline-block"
+            />
+          ))}
         </div>
       </div>
     </section>
