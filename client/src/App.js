@@ -5,15 +5,15 @@ import PeakySlider from "./components/PeakySlider";
 import "./App.css";
 import ReviewSection from "./components/ReviewSection";
 import InstagramSection from "./components/InstagramSection";
+import NewArrivals from "./components/NewArrivals";
+import DealsSection from "./components/DealsSection";
 
 const App = () => {
   return (
     <div>
-      {/* <Navbar />
-      <Banner />
-      <LogosSection /> */}
       <Hero />
-
+      <DealsSection />
+      <NewArrivals />
       <PeakySlider />
       <InstagramSection />
       <ReviewSection />
