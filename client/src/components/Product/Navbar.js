@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const { setMiniCartOpen } = useCart();
+  const { setMiniCartOpen, cartItems } = useCart();
 
   const handleLogout = () => {
     logout();
@@ -22,6 +22,8 @@ const Navbar = () => {
     { name: "Products", path: "/products" },
     { name: "Pages", path: "/pages" },
   ];
+
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <nav className="bg-white shadow-md px-6 py-4 font-poppins max-w-screen-xl mx-auto">
@@ -62,10 +64,17 @@ const Navbar = () => {
               className="cursor-pointer hover:text-black"
               onClick={() => navigate("/wishlist")}
             />
-            <FaShoppingCart
-              className="cursor-pointer hover:text-black"
+            <div
+              className="relative cursor-pointer"
               onClick={() => setMiniCartOpen(true)}
-            />
+            >
+              <FaShoppingCart className="hover:text-black" />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {totalQuantity}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -122,12 +131,17 @@ const Navbar = () => {
                 setIsMenuOpen(false);
               }}
             />
-            <FaShoppingCart
-              onClick={() => {
-                navigate("/cart");
-                setIsMenuOpen(false);
-              }}
-            />
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setMiniCartOpen(true)}
+            >
+              <FaShoppingCart className="hover:text-black" />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {totalQuantity}
+                </span>
+              )}
+            </div>
           </div>
           {user && (
             <button
