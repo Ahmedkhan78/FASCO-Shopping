@@ -93,5 +93,5 @@ This project is licensed under the GNU V2 License - see the [LICENSE](LICENSE) f
 
 Thank you for using **FASCO**! We hope you enjoy the shopping experience ecommerce website. 💃🕺
 
-```
+
 
