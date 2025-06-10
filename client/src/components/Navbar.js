@@ -1,15 +1,31 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   const handleNavClick = () => {
-    setIsMenuOpen(false); // Close menu on click
+    setIsMenuOpen(false);
+  };
+  const handleShop = () => {
+    if (user) {
+      navigate("/products");
+    } else {
+      navigate("/signin");
+    }
   };
 
   return (
     <nav className="bg-white font-poppins shadow-md">
-      <div className=" flex items-center justify-between px-4 py-4">
+      <div className="flex items-center justify-between px-4 py-4">
         {/* Logo */}
         <div className="text-2xl sm:text-3xl lg:text-[40px] font-bold font-volkhov text-gray-900">
           Fasco
@@ -18,22 +34,49 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center space-x-6">
           <ul className="flex space-x-4 text-sm sm:text-base text-[#484848]">
-            <li className="hover:text-black  cursor-pointer">Home</li>
-            <li className="hover:text-black cursor-pointer">Shop</li>
+            <li className="hover:text-black cursor-pointer">Home</li>
+            <li
+              className="hover:text-black cursor-pointer"
+              onClick={handleShop}
+            >
+              Shop
+            </li>
             <li className="hover:text-black cursor-pointer">New Arrivals</li>
             <li className="hover:text-black cursor-pointer">Packages</li>
           </ul>
-          <div className=" flex space-x-3">
-            <button className="relative overflow-hidden px-4 py-2 border border-gray-800 text-gray-800 rounded text-sm transition-all duration-500 group hover:text-white">
-              <span className="relative z-10">Sign In</span>
-              <span className="absolute inset-0 bg-gray-800 group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
-            </button>
 
-            <button className="relative overflow-hidden px-4 py-2 bg-gray-800 text-white rounded text-sm transition-all duration-500 group hover:text-black">
-              <span className="relative z-10">Sign Up</span>
-              <span className="absolute inset-0 bg-white group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
-            </button>
-          </div>
+          {/* Auth Buttons */}
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <div className="text-sm text-gray-800 font-semibold">
+                Welcome, {user.name || user.email}
+              </div>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex space-x-3">
+              <button
+                className="relative overflow-hidden px-4 py-2 border border-gray-800 text-gray-800 rounded text-sm transition-all duration-500 group hover:text-white"
+                onClick={() => navigate("/signin")}
+              >
+                <span className="relative z-10">Log In</span>
+                <span className="absolute inset-0 bg-gray-800 group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
+              </button>
+
+              <button
+                className="relative overflow-hidden px-4 py-2 bg-gray-800 text-white rounded text-sm transition-all duration-500 group hover:text-black"
+                onClick={() => navigate("/signup")}
+              >
+                <span className="relative z-10">Sign Up</span>
+                <span className="absolute inset-0 bg-white group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -79,20 +122,52 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex flex-col items-center space-y-3 mt-4">
-          <button className="relative overflow-hidden w-1/2 px-4 py-2 border border-gray-800 text-gray-800 rounded text-sm group">
-            <span className="relative z-10 transition-all duration-300 group-hover:text-white">
-              Sign In
-            </span>
-            <span className="absolute inset-0 bg-gray-800 w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
-          </button>
 
-          <button className="relative overflow-hidden w-1/2 px-4 py-2 bg-gray-800 text-white rounded text-sm group">
-            <span className="relative z-10 transition-all duration-300 group-hover:text-black">
-              Sign Up
-            </span>
-            <span className="absolute inset-0 bg-white w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
-          </button>
+        <div className="flex flex-col items-center space-y-3 mt-4">
+          {user ? (
+            <>
+              <p className="text-center text-gray-800 font-semibold">
+                Welcome, {user.name || user.email}
+              </p>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  handleNavClick();
+                }}
+                className="w-1/2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="relative overflow-hidden w-1/2 px-4 py-2 border border-gray-800 text-gray-800 rounded text-sm group"
+                onClick={() => {
+                  handleNavClick();
+                  navigate("/signin");
+                }}
+              >
+                <span className="relative z-10 group-hover:text-white">
+                  Sign In
+                </span>
+                <span className="absolute inset-0 bg-gray-800 w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+              </button>
+
+              <button
+                className="relative overflow-hidden w-1/2 px-4 py-2 bg-gray-800 text-white rounded text-sm group"
+                onClick={() => {
+                  handleNavClick();
+                  navigate("/signup");
+                }}
+              >
+                <span className="relative z-10 group-hover:text-black">
+                  Sign Up
+                </span>
+                <span className="absolute inset-0 bg-white w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

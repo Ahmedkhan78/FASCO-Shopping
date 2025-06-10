@@ -1,5 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import heroImage1 from "../assets/images/heroimage1.png";
 import heroImage2 from "../assets/images/heroimage2.png";
@@ -12,6 +14,16 @@ import lovisVuitton from "../assets/images/logos/lovisVuitton.png";
 import Prada from "../assets/images/logos/Prada.png";
 
 const Banner = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handlShopNow = () => {
+    if (user) {
+      navigate("/products");
+    } else {
+      navigate("/signin");
+    }
+  };
   return (
     <section>
       <div className="flex flex-col md:flex-row gap-6">
@@ -54,7 +66,10 @@ const Banner = () => {
             </h3>
 
             {/* Shop Now Button */}
-            <button className="relative overflow-hidden mt-4 px-6 py-2 bg-black text-white rounded font-poppins border border-black transition-all duration-500 group hover:text-black">
+            <button
+              className="relative overflow-hidden mt-4 px-6 py-2 bg-black text-white rounded font-poppins border border-black transition-all duration-500 group hover:text-black"
+              onClick={handlShopNow}
+            >
               <span className="relative z-10">Shop Now</span>
               <span className="absolute inset-0 bg-white group-hover:w-full w-0 left-0 top-0 transition-all duration-500"></span>
               <span className="absolute inset-0 group-hover:border-black border-2 border-transparent rounded transition-all duration-500"></span>

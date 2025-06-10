@@ -1,24 +1,28 @@
 import React from "react";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";
-import PeakySlider from "./components/PeakySlider";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import ReviewSection from "./components/ReviewSection";
-import InstagramSection from "./components/InstagramSection";
-import NewArrivals from "./components/NewArrivals";
-import DealsSection from "./components/DealsSection";
+import { AuthProvider } from "./context/AuthContext";
+import HomePage from "./pages/HomePage";
+import Login from "./auth/Login";
+import SignUp from "./auth/SignUp";
+import EmailVerified from "./auth/EmailVerified";
+
+import ProductPage from "./pages/ProductPage";
 
 const App = () => {
   return (
-    <div>
-      <Hero />
-      <DealsSection />
-      <NewArrivals />
-      <PeakySlider />
-      <InstagramSection />
-      <ReviewSection />
-      <Footer />
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/email-verified" element={<EmailVerified />}></Route>
+          <Route path="/products" element={<ProductPage />}></Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 
