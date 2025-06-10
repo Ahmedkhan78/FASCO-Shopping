@@ -16,11 +16,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
   const handleShop = () => {
-    if (user) {
-      navigate("/products");
-    } else {
-      navigate("/signin");
-    }
+    navigate("/products");
   };
 
   return (

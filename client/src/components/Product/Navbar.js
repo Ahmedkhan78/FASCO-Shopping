@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext";
+// adjust path as needed
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { setMiniCartOpen } = useCart();
 
   const handleLogout = () => {
     logout();
@@ -21,7 +24,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md px-6 py-4 font-poppins">
+    <nav className="bg-white shadow-md px-6 py-4 font-poppins max-w-screen-xl mx-auto">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}
         <div
@@ -61,7 +64,7 @@ const Navbar = () => {
             />
             <FaShoppingCart
               className="cursor-pointer hover:text-black"
-              onClick={() => navigate("/cart")}
+              onClick={() => setMiniCartOpen(true)}
             />
           </div>
         </div>

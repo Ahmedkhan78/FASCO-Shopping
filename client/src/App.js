@@ -9,19 +9,24 @@ import SignUp from "./auth/SignUp";
 import EmailVerified from "./auth/EmailVerified";
 
 import ProductPage from "./pages/ProductPage";
+import ProductDetails from "./components/Product/ProductDetails";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/email-verified" element={<EmailVerified />}></Route>
-          <Route path="/products" element={<ProductPage />}></Route>
-        </Routes>
-      </Router>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/email-verified" element={<EmailVerified />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+          </Routes>
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 };

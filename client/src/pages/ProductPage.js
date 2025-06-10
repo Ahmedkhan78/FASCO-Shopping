@@ -1,6 +1,9 @@
 import React from "react";
 import ProductList from "../components/Product/ProductList";
 import Navbar from "../components/Product/Navbar";
+import PeakySlider from "../components/PeakySlider";
+import InstagramSection from "../components/InstagramSection";
+import Footer from "../components/Footer";
 
 const ProductPage = () => {
   return (
@@ -11,6 +14,9 @@ const ProductPage = () => {
         Home <span>{">"}</span> Fashion
       </p>
       <ProductList />
+      <PeakySlider />
+      <InstagramSection />
+      <Footer />
     </div>
   );
 };
