@@ -2,10 +2,17 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 const MiniCart = ({ onClose }) => {
-  const { cartItems, subtotal, toggleGiftWrap, increaseQty, decreaseQty } =
-    useCart();
+  const {
+    cartItems,
+    subtotal,
+    toggleGiftWrap,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+  } = useCart();
 
   const navigate = useNavigate();
 
@@ -37,7 +44,17 @@ const MiniCart = ({ onClose }) => {
 
       <div className="space-y-6">
         {cartItems.map((item) => (
-          <div key={item.id} className="border-b pb-4">
+          <div key={item.id} className="relative border-b pb-4 pt-2 pr-10">
+            {/* Trash Icon */}
+            <button
+              onClick={() => removeFromCart(item.id)}
+              className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+              aria-label="Remove Item"
+            >
+              <FaTrash />
+            </button>
+
+            {/* Product Details */}
             <p className="text-sm text-gray-500">Color: {item.color}</p>
             <h3 className="font-medium">{item.name}</h3>
             <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>

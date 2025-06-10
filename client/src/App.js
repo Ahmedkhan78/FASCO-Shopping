@@ -11,6 +11,8 @@ import EmailVerified from "./auth/EmailVerified";
 import ProductPage from "./pages/ProductPage";
 import ProductDetails from "./components/Product/ProductDetails";
 import { CartProvider } from "./context/CartContext";
+import ViewCart from "./components/Product/ViewCart";
+import CheckoutPage from "./components/Product/CheckoutPage";
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
             <Route path="/email-verified" element={<EmailVerified />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<ViewCart />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </Router>
       </CartProvider>

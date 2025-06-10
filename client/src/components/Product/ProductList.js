@@ -9,6 +9,8 @@ import image6 from "../../assets/images/Product/image6.png";
 import image7 from "../../assets/images/Product/image1.png";
 import image8 from "../../assets/images/Product/image2.png";
 import image9 from "../../assets/images/Product/image3.png";
+import MiniCart from "./MiniCart";
+import { useCart } from "../../context/CartContext";
 
 const products = [
   {
@@ -79,6 +81,8 @@ const products = [
 const ProductList = () => {
   const navigate = useNavigate();
 
+  const { isMiniCartOpen, closeMiniCart } = useCart();
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
@@ -111,6 +115,7 @@ const ProductList = () => {
           </div>
         ))}
       </div>
+      {isMiniCartOpen && <MiniCart onClose={closeMiniCart} />}
     </div>
   );
 };
