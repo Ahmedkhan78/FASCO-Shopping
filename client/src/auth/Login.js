@@ -62,7 +62,9 @@ const Login = () => {
         {/* Right Form Section */}
         <div className="w-full lg:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[90vh]">
           <div className="w-full max-w-md mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">FASCO</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6" navigate="/">
+              FASCO
+            </h1>
 
             {/* Section Title + Auth Buttons */}
             <div className="mb-6">
