@@ -1,13 +1,26 @@
 // src/context/AuthContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // global user state
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  // Logout function: user ko null kar de
-  const logout = () => setUser(null);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
 
   return (
     <AuthContext.Provider value={{ user, setUser, logout }}>
@@ -16,5 +29,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook
 export const useAuth = () => useContext(AuthContext);

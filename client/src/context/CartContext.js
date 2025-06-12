@@ -1,13 +1,20 @@
 // src/context/CartContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("cartItems");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
   const [isMiniCartOpen, setMiniCartOpen] = useState(false);
 
-  // ✅ Add to cart (if exists, increase qty instead of duplicate)
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const addToCart = (item) => {
     setCartItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
@@ -22,10 +29,8 @@ export const CartProvider = ({ children }) => {
     setMiniCartOpen(true);
   };
 
-  // ✅ MiniCart visibility
   const closeMiniCart = () => setMiniCartOpen(false);
 
-  // ✅ Quantity increase
   const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -34,7 +39,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Quantity decrease (min 1)
   const decreaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -45,7 +49,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Toggle gift wrap
   const toggleGiftWrap = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -54,7 +57,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Subtotal calculation
   const subtotal = cartItems.reduce(
     (sum, item) =>
       sum + item.quantity * parseFloat(item.price) + (item.giftWrap ? 10 : 0),
@@ -64,6 +66,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
+
   return (
     <CartContext.Provider
       value={{
