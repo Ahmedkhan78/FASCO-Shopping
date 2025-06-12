@@ -16,7 +16,11 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
   const handleShop = () => {
-    navigate("/products");
+    if (user) {
+      navigate("/products");
+    } else {
+      navigate("/signin");
+    }
   };
 
   return (
