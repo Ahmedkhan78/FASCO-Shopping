@@ -1,26 +1,42 @@
 // src/context/CartContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const { user } = useAuth();
+
+  // Use a key based on user email/id or 'guest' if no user
+  const storageKey = user ? `cartItems_${user.email}` : "cartItems_guest";
+
   const [cartItems, setCartItems] = useState(() => {
-    const storedCart = localStorage.getItem("cartItems");
+    const storedCart = localStorage.getItem(storageKey);
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
   const [isMiniCartOpen, setMiniCartOpen] = useState(false);
 
+  // Whenever user or cartItems change, sync localStorage
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    // On user change, load the cart for new user
+    const storedCart = localStorage.getItem(storageKey);
+    setCartItems(storedCart ? JSON.parse(storedCart) : []);
+  }, [user]);
+
+  useEffect(() => {
+    // Save cartItems to localStorage on change
+    localStorage.setItem(storageKey, JSON.stringify(cartItems));
+  }, [cartItems, storageKey]);
 
   const addToCart = (item) => {
     setCartItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
         return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+          i.id === item.id
+            ? { ...i, quantity: i.quantity + (item.quantity || 1) }
+            : i
         );
       } else {
         return [...prev, { ...item, quantity: item.quantity || 1 }];
@@ -66,6 +82,13 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
+
+  // Optional: clear cart on logout (if you want)
+  // useEffect(() => {
+  //   if (!user) {
+  //     setCartItems([]);
+  //   }
+  // }, [user]);
 
   return (
     <CartContext.Provider
