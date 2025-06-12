@@ -48,6 +48,7 @@ const SignUp = () => {
       });
 
       setSuccess(res.data.message);
+      navigate("/email-verified");
       setError("");
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
