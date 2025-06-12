@@ -15,7 +15,7 @@ router.post("/signup", async (req, res) => {
     email,
     password,
     options: {
-      emailRedirectTo: "http://localhost:3000/email-verified",
+      emailRedirectTo: "https://fasco-shopping-nine.vercel.app/email-verified",
       user_metadata: {
         first_name: firstName,
         last_name: lastName,
