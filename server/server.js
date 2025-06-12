@@ -5,7 +5,12 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://fasco-shopping-nine.vercel.app/"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Routes
