@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import image1 from "../../assets/images/Product/image1.png";
-import image2 from "../../assets/images/Product/image2.png";
-import image3 from "../../assets/images/Product/image3.png";
-import image4 from "../../assets/images/Product/image4.png";
-import image5 from "../../assets/images/Product/image5.png";
-import image6 from "../../assets/images/Product/image6.png";
-import image7 from "../../assets/images/Product/image1.png";
-import image8 from "../../assets/images/Product/image2.png";
-import image9 from "../../assets/images/Product/image3.png";
+import image1 from "../../assets/images/Product/img1.png";
+import image2 from "../../assets/images/Product/img2.png";
+import image3 from "../../assets/images/Product/img3.png";
+import image4 from "../../assets/images/Product/img4.png";
+import image5 from "../../assets/images/Product/img5.png";
+import image6 from "../../assets/images/Product/img6.png";
+import image7 from "../../assets/images/Product/img7.png";
+import image8 from "../../assets/images/Product/img8.png";
+import image9 from "../../assets/images/Product/img9.png";
 import MiniCart from "./MiniCart";
 import { useCart } from "../../context/CartContext";
 
