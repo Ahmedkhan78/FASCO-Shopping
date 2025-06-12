@@ -56,6 +56,10 @@ const SignUp = () => {
     }
   };
 
+  const handleHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8">
       <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white shadow-xl rounded overflow-hidden max-h-[90vh]">
@@ -73,7 +77,10 @@ const SignUp = () => {
         <div className="w-full lg:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[90vh]">
           {/* Form Content */}
           <div className="w-full max-w-md mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6" navigate="/">
+            <h1
+              className="text-3xl font-bold text-gray-800 mb-6 cursor-pointer"
+              onClick={handleHome}
+            >
               FASCO
             </h1>
 

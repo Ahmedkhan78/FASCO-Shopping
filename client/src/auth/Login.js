@@ -67,7 +67,7 @@ const Login = () => {
         <div className="w-full lg:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[90vh]">
           <div className="w-full max-w-md mx-auto">
             <h1
-              className="text-3xl font-bold text-gray-800 mb-6"
+              className="text-3xl font-bold text-gray-800 mb-6 cursor-pointer"
               onClick={handleHome}
             >
               FASCO
