@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // backend ka base URL
+  baseURL: "https://fasco-shopping-production.up.railway.app/api", // backend ka base URL
 });
 
 export default API;
